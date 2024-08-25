@@ -21,7 +21,7 @@ func main() {
 	admin := user.NewAdmin("test@example.com", "test123")
 	admin.User.OutputUserDetails()
 	admin.User.ClearUserName()
-	// Call methods on the admin struct. Anon embedding.a
+	// Call methods on the admin struct. Anon embedding.
 	admin.OutputUserDetails()
 
 	// ... do something awesome with that gathered data!
