@@ -13,3 +13,5 @@
 
 # Output files of the go programs
 *.txt *.json
+
+.env

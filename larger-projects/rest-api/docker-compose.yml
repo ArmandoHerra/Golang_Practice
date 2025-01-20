@@ -1,0 +1,9 @@
+services:
+  app:
+    container_name: go-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: go-api
+    ports:
+      - 8080:8080
