@@ -1,7 +1,7 @@
 #!/bin/bash -xe
 
-include .env
-export 
+# include .env
+# export 
 
 RUNNING_CONTAINER=$(shell docker container list | sed -n '2 p' | awk '{print $$1}')
 
@@ -9,7 +9,7 @@ build-api:
 	docker build . -t api:latest
 
 run-api:
-	docker compose up --build
+	docker compose up
 
 debug-api:
 	docker exec -it ${RUNNING_CONTAINER} sh

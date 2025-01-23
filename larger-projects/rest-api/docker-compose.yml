@@ -3,7 +3,9 @@ services:
     container_name: go-api
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     image: go-api
     ports:
       - 8080:8080
+    volumes:
+      - ./:/app

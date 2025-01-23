@@ -15,3 +15,5 @@
 *.txt *.json
 
 .env
+*.db
+larger-projects/rest-api/tmp
