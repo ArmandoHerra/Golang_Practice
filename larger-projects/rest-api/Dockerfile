@@ -1,30 +1,26 @@
 # Stage 1: Build stage
-FROM golang:alpine3.21 AS build
-
-# Set Environment Variables
-ENV CGO_ENABLED=1
+FROM golang:1.22-bullseye AS build
 
 # Set the working directory
-WORKDIR /build
+WORKDIR /app
 
 # Copy and download dependencies
-RUN apk add --no-cache build-base
 COPY go.mod go.sum ./
-RUN go mod download
+RUN apt-get update && apt-get install -y build-essential && go mod download
 
 # Copy the source code
 COPY . .
 
 # Build the Go application
-RUN go build -o /app .
+RUN CGO_ENABLED=1 go build -o /bin/myapi .
 
 #################################
 
 # Stage 2: Final stage
-FROM alpine:3.21
+FROM gcr.io/distroless/base
 
 # Copy the binary from the build stage
-COPY --from=build /app /app
+COPY --from=build /bin/myapi /app
 
 # CMD or ENTRYPOINT command
 CMD ["/app"]

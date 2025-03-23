@@ -1,6 +1,9 @@
 # Stage 1: Build stage
 FROM golang:alpine3.21
 
+# Install C compiler and other build tools early
+RUN apk add --no-cache build-base
+
 # Set Environment Variables
 ENV CGO_ENABLED=1
 
@@ -8,10 +11,9 @@ ENV CGO_ENABLED=1
 WORKDIR /app
 
 # Configure Air Dependencies
-RUN go install github.com/air-verse/air@latest
+RUN go install github.com/air-verse/air@v1.61.7
 
 # Copy and download dependencies
-RUN apk add --no-cache build-base
 COPY go.mod go.sum ./
 RUN go mod download
 
